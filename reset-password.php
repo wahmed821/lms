@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <script src="./assets/js/1c26fb5c51.js" crossorigin="anonymous"></script>
-    <title>Login | Star Library</title>
+    <title>Forgot Password | Star Library</title>
 </head>
 
 <body style="background-color: #212529">
@@ -19,29 +19,37 @@
                 <div class="card mb-3" style="max-width: 900px">
                     <div class="row g-0">
                         <div class="col-md-5">
-                            <img src="./assets/images/login-bg.jpg" class="img-fluid rounded-start" />
+                            <img src="./assets/images/login-bg.jpg" class="img-fluid rounded-start im" />
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
                                 <h1 class="card-title text-uppercase fw-bold">
                                     star library
                                 </h1>
-                                <p class="card-text">Enter email and password to login</p>
-                                <form action="./dashboard.php">
+                                <p class="card-text">Reset password</p>
+                                <form action="./dashboard.html">
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                        <label for="exampleInputEmail1" class="form-label">Reset password code</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                                     </div>
+
                                     <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" />
+                                        <label for="exampleInputEmail1" class="form-label">New password</label>
+                                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Login</button>
+
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Confirm password</label>
+                                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">
+                                        Submit
+                                    </button>
                                 </form>
 
                                 <hr />
 
-                                <a href="./forgot-password.php" class="card-text text-center link-underline-light">Forgot Password?</a>
+                                <a href="./index.html" class="card-text text-center link-underline-light">Login Now</a>
                             </div>
                         </div>
                     </div>

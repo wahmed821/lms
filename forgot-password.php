@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <script src="./assets/js/1c26fb5c51.js" crossorigin="anonymous"></script>
-    <title>Login | Star Library</title>
+    <title>Forgot Password | Star Library</title>
 </head>
 
 <body style="background-color: #212529">
@@ -26,22 +26,20 @@
                                 <h1 class="card-title text-uppercase fw-bold">
                                     star library
                                 </h1>
-                                <p class="card-text">Enter email and password to login</p>
-                                <form action="./dashboard.php">
+                                <p class="card-text">Enter email to reset password</p>
+                                <form action="./reset-password.php">
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Email address</label>
                                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" />
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <button type="submit" class="btn btn-primary">
+                                        Submit
+                                    </button>
                                 </form>
 
                                 <hr />
 
-                                <a href="./forgot-password.php" class="card-text text-center link-underline-light">Forgot Password?</a>
+                                <a href="./index.php" class="card-text text-center link-underline-light">Login Now</a>
                             </div>
                         </div>
                     </div>
