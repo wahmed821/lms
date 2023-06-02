@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/style.css" />
-
     <script src="./assets/js/1c26fb5c51.js" crossorigin="anonymous"></script>
     <title>Star Library</title>
 </head>
