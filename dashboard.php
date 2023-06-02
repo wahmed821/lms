@@ -7,8 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./assets/css/style.css" />
+
     <script src="./assets/js/1c26fb5c51.js" crossorigin="anonymous"></script>
-    <title>Star Library</title>
+    <title>Login | Star Library</title>
 </head>
 
 <body>
@@ -88,7 +89,7 @@
                         <a class="nav-link sidebar-link" data-bs-toggle="collapse" href="#booksManagement" role="button" aria-expanded="false" aria-controls="booksManagement">
                             <i class="fa-solid fa-book me-2"></i>
                             Books Management
-                            <span class="right-icon float-end"><i class="bi bi-chevron-down"></i></span>
+                            <span class="right-icon float-end"><i class="fas fa-chevron-down"></i></span>
                         </a>
 
                         <div class="collapse" id="booksManagement">
@@ -109,7 +110,7 @@
                         <a class="nav-link sidebar-link" data-bs-toggle="collapse" href="#studentsManagement" role="button" aria-expanded="false" aria-controls="studentsManagement">
                             <i class="fa-solid fa-users me-2"></i>
                             Students
-                            <span class="right-icon float-end"><i class="bi bi-chevron-down"></i></span>
+                            <span class="right-icon float-end"><i class="fas fa-chevron-down"></i></span>
                         </a>
 
                         <div class="collapse" id="studentsManagement">
@@ -139,7 +140,7 @@
                         <a class="nav-link sidebar-link" data-bs-toggle="collapse" href="#loanManagement" role="button" aria-expanded="false" aria-controls="loanManagement">
                             <i class="fas fa-book-reader me-2"></i>
                             Books Loan
-                            <span class="right-icon float-end"><i class="bi bi-chevron-down"></i></span>
+                            <span class="right-icon float-end"><i class="fas fa-chevron-down"></i></span>
                         </a>
 
                         <div class="collapse" id="loanManagement">
@@ -160,7 +161,7 @@
                         <a class="nav-link sidebar-link" data-bs-toggle="collapse" href="#subscriptionManagement" role="button" aria-expanded="false" aria-controls="subscriptionManagement">
                             <i class="fa-solid fa-indian-rupee-sign me-2"></i>
                             Subscription
-                            <span class="right-icon float-end"><i class="bi bi-chevron-down"></i></span>
+                            <span class="right-icon float-end"><i class="fas fa-chevron-down"></i></span>
                         </a>
 
                         <div class="collapse" id="subscriptionManagement">
