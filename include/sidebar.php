@@ -9,7 +9,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./dashboard.html">
+                    <a class="nav-link active" aria-current="page" href="<?php echo BASE_URL ?>dashboard.php">
                         <i class="fas fa-tachometer-alt-fast me-2"></i> Dashboard</a>
                 </li>
                 <li class="my-0">

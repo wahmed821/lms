@@ -1,5 +1,4 @@
 <?php
-
 include_once("../config/config.php");
 include_once(DIR_URL . "include/header.php");
 include_once(DIR_URL . "include/topbar.php");
@@ -11,6 +10,7 @@ include_once(DIR_URL . "include/sidebar.php");
         <!--Cards-->
         <div class="row dashboard-counts">
             <div class="col-md-12">
+                <?php include_once(DIR_URL . "include/alerts.php"); ?>
                 <h4 class="fw-bold text-uppercase">Manage Books</h4>
             </div>
 
