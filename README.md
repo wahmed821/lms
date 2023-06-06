@@ -25,15 +25,3 @@
         Live Server
         Prettier
     # Live server web extension on Google chrome
-
-# TODO List
-
-Project folder structure setup
-Module-folders (books, students, subscription, loans)
-Models for DB functionality for each module
-Include for common files
-Config for configuration files
-HTML to PHP conversion
-Database discussion with chatGPT
-Database creation
-Database connection
