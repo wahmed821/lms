@@ -105,10 +105,10 @@
                         <div>
                             <ul class="navbar-nav ps-3">
                                 <li>
-                                    <a href="./subscription-plans.html" class="nav-link"><i class="fa-solid fa-plus me-2"></i> Plans</a>
+                                    <a href="<?php echo BASE_URL ?>subscriptions" class="nav-link"><i class="fa-solid fa-plus me-2"></i> Plans</a>
                                 </li>
                                 <li>
-                                    <a href="./purchase-history.html" class="nav-link"><i class="fa-solid fa-list me-2"></i> Purchase
+                                    <a href="<?php echo BASE_URL ?>subscriptions/purchase-history.php" class="nav-link"><i class="fa-solid fa-list me-2"></i> Purchase
                                         History</a>
                                 </li>
                             </ul>
