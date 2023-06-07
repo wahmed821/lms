@@ -1,3 +1,29 @@
+<?php
+include_once("config/config.php");
+include_once(DIR_URL . "config/database.php");
+include_once(DIR_URL . "models/auth.php");
+
+// If already logged in
+if (isset($_SESSION['is_user_login'])) {
+    header("LOCATION: " . BASE_URL . 'dashboard.php');
+    exit;
+}
+
+// Forgot password functionality
+if (isset($_POST['submit'])) {
+    $res = resetPassword($conn, $_POST);
+    if ($res['status'] == true) {
+        $_SESSION['success'] = $res['message'];
+        header("LOCATION: " . BASE_URL);
+        exit;
+    } else {
+        $_SESSION['error'] = $res['message'];
+        header("LOCATION: " . BASE_URL . 'reset-password.php');
+        exit;
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +35,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 
     <script src="./assets/js/1c26fb5c51.js" crossorigin="anonymous"></script>
-    <title>Forgot Password | Star Library</title>
+    <title>Reset Password | Star Library</title>
 </head>
 
 <body style="background-color: #212529">
@@ -27,22 +53,24 @@
                                     star library
                                 </h1>
                                 <p class="card-text">Reset password</p>
-                                <form action="./dashboard.html">
+                                <?php include_once(DIR_URL . "include/alerts.php"); ?>
+
+                                <form method="post" action="<?php echo BASE_URL ?>reset-password.php">
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Reset password code</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                        <label class="form-label">Reset password code</label>
+                                        <input type="text" class="form-control" name="reset_code" />
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">New password</label>
-                                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                        <label class="form-label">New password</label>
+                                        <input type="password" class="form-control" name="password" />
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Confirm password</label>
-                                        <input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                                        <label class="form-label">Confirm password</label>
+                                        <input type="password" class="form-control" name="conf_pass" />
                                     </div>
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" name="submit" class="btn btn-primary">
                                         Submit
                                     </button>
                                 </form>

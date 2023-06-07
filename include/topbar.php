@@ -25,18 +25,25 @@
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="./assets/images/user.jpg" class="user-icon" />
-                        Admin
+                        <?php if ($_SESSION['user']['profile_pic']) { ?>
+                            <img src="
+                                            <?php echo BASE_URL . 'assets/uploads/' . $_SESSION['user']['profile_pic'] ?>" class="user-icon" />
+                        <?php } else { ?>
+                            <img src="
+                                            <?php echo BASE_URL . 'assets/images/user.jpg' ?>" class="user-icon" />
+                        <?php } ?>
+
+                        Hi <?php echo $_SESSION['user']['name'] ?>
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="#">My Profle</a></li>
-                        <li><a class="dropdown-item" href="#">Change Password</a></li>
+                        <li><a class="dropdown-item" href="<?php echo BASE_URL ?>my-profile.php">My Profle</a></li>
+                        <li><a class="dropdown-item" href="<?php echo BASE_URL ?>my-profile.php">Change Password</a></li>
                         <li>
                             <hr class="dropdown-divider" />
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            <a class="dropdown-item" href="<?php echo BASE_URL ?>logout.php">Logout</a>
                         </li>
                     </ul>
                 </li>

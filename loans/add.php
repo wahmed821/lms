@@ -1,6 +1,7 @@
 <?php
 include_once("../config/config.php");
 include_once(DIR_URL . "config/database.php");
+include_once(DIR_URL . "include/middleware.php");
 include_once(DIR_URL . "models/loan.php");
 
 // Add Functionality
