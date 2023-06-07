@@ -1,6 +1,6 @@
 <?php
 
-// Function to create loan
+// Function to create plan
 function create($conn, $param)
 {
     extract($param);
@@ -93,10 +93,74 @@ function getStudents($conn)
     return $result;
 }
 
-// Function to get books
-function getBooks($conn)
+// Function to get plans
+function getActivePlans($conn)
 {
-    $sql = "select id, title from books";
+    $sql = "select id, title from subscription_plans where status = 1";
+    $result = $conn->query($sql);
+    return $result;
+}
+
+// Function to create subscription
+function createSubscription($conn, $param)
+{
+    extract($param);
+    ## Validation start
+    if (empty($plan_id)) {
+        $result = array("error" => "Plan selection is required");
+        return $result;
+    } else if (empty($student_id)) {
+        $result = array("error" => "Student selection is required");
+        return $result;
+    }
+    ## Validation end
+
+    $datetime = date("Y-m-d H:i:s");
+    $start_date = date("Y-m-d");
+    $end_date = date("Y-m-d");
+
+    ## Get plan
+    $plan = getPlanById($conn, $plan_id);
+    if ($plan->num_rows > 0) {
+        $plan = mysqli_fetch_assoc($plan);
+        $duration = $plan['duration'];
+
+        ## start date - end date calculation
+        $start_date = date("Y-m-d");
+        $start_time = strtotime($start_date);
+        $end_date = date("Y-m-d", strtotime("+$duration month", $start_time));
+        $amount = $plan['amount'];
+
+        $sql = "INSERT INTO subscriptions (student_id, plan_id, start_date, end_date, amount, created_at)
+        VALUES ($student_id, $plan_id, '$start_date', '$end_date', $amount, '$datetime')";
+        $result['success'] = $conn->query($sql);
+        return $result;
+    } else {
+        $result = array("error" => "Invalid plan selection");
+        return $result;
+    }
+}
+
+// Function to get all purchase history
+function getPurchaseHistory($conn, $from, $to)
+{
+    $sql = "select s.*, p.title as plan_name, st.name as student_name 
+        from subscriptions s
+        inner join subscription_plans p on p.id = s.plan_id
+        inner join students st on st.id = s.student_id where s.id != 0";
+
+    if (!empty($from)) {
+        $sql .= " AND s.start_date >= '$from'";
+    }
+
+    if (!empty($to)) {
+        $sql .= " AND s.end_date <= '$to'";
+    }
+
+    $sql .= " order by s.id desc";
+
+
+
     $result = $conn->query($sql);
     return $result;
 }

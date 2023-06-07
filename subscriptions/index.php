@@ -84,8 +84,10 @@ include_once(DIR_URL . "include/sidebar.php");
 ?>
 <!--Main content start-->
 <main class="mt-5 pt-3">
+
     <div class="container-fluid">
         <!--Cards-->
+
         <div class="row dashboard-counts">
             <div class="col-md-12">
                 <?php include_once(DIR_URL . "include/alerts.php"); ?>
@@ -208,9 +210,15 @@ include_once(DIR_URL . "include/sidebar.php");
                                         Save
                                     </button>
 
-                                    <button type="reset" class="btn btn-secondary">
-                                        Cancel
-                                    </button>
+                                    <?php if ($plan['id'] == '') { ?>
+                                        <button type="reset" class="btn btn-secondary">
+                                            Cancel
+                                        </button>
+                                    <?php } else { ?>
+                                        <a href="<?php echo BASE_URL ?>subscriptions" class="btn btn-secondary">
+                                            Cancel
+                                        </a>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </form>

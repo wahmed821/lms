@@ -1,6 +1,11 @@
 <?php
 include_once("config/config.php");
-include_once("config/database.php");
+include_once(DIR_URL . "config/database.php");
+include_once(DIR_URL . "models/dashboard.php");
+
+$counts = getCounts($conn);
+$tabs = getTabData($conn);
+
 include_once(DIR_URL . "include/header.php");
 include_once(DIR_URL . "include/topbar.php");
 include_once(DIR_URL . "include/sidebar.php");
@@ -21,8 +26,8 @@ include_once(DIR_URL . "include/sidebar.php");
                         <h6 class="card-title text-uppercase text-muted">
                             Total Books
                         </h6>
-                        <p class="h1 fw-bold">130</p>
-                        <a href="#" class="card-link link-underline-light">View more
+                        <p class="h1 fw-bold"><?php echo $counts['total_books'] ?></p>
+                        <a href="<?php echo BASE_URL ?>books" class="card-link link-underline-light">View more
                         </a>
                     </div>
                 </div>
@@ -34,8 +39,8 @@ include_once(DIR_URL . "include/sidebar.php");
                         <h6 class="card-title text-uppercase text-muted">
                             Total Students
                         </h6>
-                        <p class="h1 fw-bold">84</p>
-                        <a href="#" class="card-link link-underline-light">View more</a>
+                        <p class="h1 fw-bold"><?php echo $counts['total_students'] ?></p>
+                        <a href="<?php echo BASE_URL ?>students" class="card-link link-underline-light">View more</a>
                     </div>
                 </div>
             </div>
@@ -47,9 +52,9 @@ include_once(DIR_URL . "include/sidebar.php");
                             Total Revenue
                         </h6>
                         <p class="h1 fw-bold">
-                            <i class="fa-solid fa-indian-rupee-sign"></i> 1,20,300
+                            <i class="fa-solid fa-indian-rupee-sign"></i> <?php echo number_format($counts['total_revenue']) ?></p>
                         </p>
-                        <a href="#" class="card-link link-underline-light">View more
+                        <a href="<?php echo BASE_URL ?>subscriptions/purchase-history.php" class="card-link link-underline-light">View more
                         </a>
                     </div>
                 </div>
@@ -61,8 +66,8 @@ include_once(DIR_URL . "include/sidebar.php");
                         <h6 class="card-title text-uppercase text-muted">
                             Total Books Loan
                         </h6>
-                        <p class="h1 fw-bold">35</p>
-                        <a href="loans.html" class="card-link link-underline-light">View more</a>
+                        <p class="h1 fw-bold"><?php echo $counts['total_loans'] ?></p>
+                        <a href="<?php echo BASE_URL ?>loans" class="card-link link-underline-light">View more</a>
                     </div>
                 </div>
             </div>
@@ -96,51 +101,31 @@ include_once(DIR_URL . "include/sidebar.php");
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Preparing For</th>
+                                        <th scope="col">Phone No</th>
                                         <th scope="col">Registered On</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Mark</td>
-                                        <td>UPSC</td>
-                                        <td>10-05-2023, 10:15 AM</td>
-                                        <td>
-                                            <span class="badge text-bg-success">Active</span>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($tabs['students'] as $st) {
+                                        ?>
+                                        <tr>
+                                            <th><?php echo $i++ ?></th>
+                                            <td><?php echo $st['name'] ?></td>
+                                            <td><?php echo $st['phone_no'] ?></td>
+                                            <td><?php echo date("d-m-Y H:i A", strtotime($st['created_at'])) ?></td>
+                                            <td>
+                                                <?php
+                                                if ($st['status'] == 1)
+                                                    echo '<span class="badge text-bg-success">Active</span>';
+                                                else echo '<span class="badge text-bg-danger">Inactive</span>';
 
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Jai</td>
-                                        <td>GATE</td>
-                                        <td>12-05-2023, 11:35 AM</td>
-                                        <td>
-                                            <span class="badge text-bg-success">Active</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Nitin Kumar</td>
-                                        <td>IAS</td>
-                                        <td>09-05-2023, 06:15 PM</td>
-                                        <td>
-                                            <span class="badge text-bg-success">Active</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>4</th>
-                                        <td>Rakesh Saini</td>
-                                        <td>GATE</td>
-                                        <td>09-05-2022, 11:35 AM</td>
-                                        <td>
-                                            <span class="badge text-bg-danger">Inactive</span>
-                                        </td>
-                                    </tr>
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -160,53 +145,31 @@ include_once(DIR_URL . "include/sidebar.php");
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Indian Art and Culture</td>
-                                        <td>Jai Sharma</td>
-                                        <td>26-05-2023</td>
-                                        <td>20-06-2023</td>
-                                        <td>
-                                            <span class="badge text-bg-success">Active</span>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($tabs['loans'] as $l) {
+                                        ?>
+                                        <tr>
+                                            <th><?php echo $i++ ?></th>
+                                            <td><?php echo $l['book_title'] ?></td>
+                                            <td><?php echo $l['student_name'] ?></td>
+                                            <td><?php echo date("d-m-Y", strtotime($l['loan_date'])) ?></td>
+                                            <td><?php echo date("d-m-Y", strtotime($l['return_date'])) ?></td>
+                                            <td>
+                                                <?php
+                                                if ($l['is_return'] == 1)
+                                                    echo '<span class="badge text-bg-success">Returned</span>';
+                                                else echo '<span class="badge text-bg-warning">Active</span>';
 
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Certificate Physical Geography</td>
-                                        <td>Rohan Suthar</td>
-                                        <td>25-05-2023</td>
-                                        <td>31-05-2023</td>
-                                        <td>
-                                            <span class="badge text-bg-success">Active</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Indian Economy by Nitin Singhania</td>
-                                        <td>Nitin Saini</td>
-                                        <td>20-05-2023</td>
-                                        <td>29-05-2023</td>
-                                        <td>
-                                            <span class="badge text-bg-success">Active</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>4</th>
-                                        <td>Tata McGraw Hill CSAT Manual</td>
-                                        <td>Joy</td>
-                                        <td>20-05-2023</td>
-                                        <td>25-05-2023</td>
-                                        <td>
-                                            <span class="badge text-bg-danger">Returned</span>
-                                        </td>
-                                    </tr>
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+
                     <div class="tab-pane fade" id="recent-subscription-pane" role="tabpanel" aria-labelledby="recent-subscription" tabindex="0">
                         <div class="table-responsive">
                             <table class="table table-responsive table-striped">
@@ -221,57 +184,31 @@ include_once(DIR_URL . "include/sidebar.php");
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th>1</th>
-                                        <td>Jai Kaushik</td>
-                                        <td>
-                                            <i class="fa-solid fa-indian-rupee-sign"></i> 500
-                                        </td>
-                                        <td>25-05-2023</td>
-                                        <td>24-06-2023</td>
-                                        <td>
-                                            <span class="badge text-bg-success">Active</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>2</th>
-                                        <td>Narayan Soni</td>
-                                        <td>
-                                            <i class="fa-solid fa-indian-rupee-sign"></i> 750
-                                        </td>
-                                        <td>20-05-2023</td>
-                                        <td>19-08-2023</td>
-                                        <td>
-                                            <span class="badge text-bg-success">Active</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>3</th>
-                                        <td>Hemlata Khatri</td>
-                                        <td>
-                                            <i class="fa-solid fa-indian-rupee-sign"></i> 1000
-                                        </td>
-                                        <td>10-05-2023</td>
-                                        <td>09-11-2023</td>
-                                        <td>
-                                            <span class="badge text-bg-success">Active</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th>4</th>
-                                        <td>Rakesh</td>
-                                        <td>
-                                            <i class="fa-solid fa-indian-rupee-sign"></i> 500
-                                        </td>
-                                        <td>20-04-2023</td>
-                                        <td>19-05-2023</td>
-                                        <td>
-                                            <span class="badge text-bg-danger">Expired</span>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $i = 1;
+                                    foreach ($tabs['subscriptions'] as $s) {
+                                        ?>
+                                        <tr>
+                                            <th><?php echo $i++ ?></th>
+                                            <td><?php echo $s['student_name'] ?></td>
+                                            <td>
+                                                <span class="badge text-bg-info me-1"><?php echo $s['plan_name'] ?></span>
+                                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                                                <?php echo $s['amount'] ?>
+                                            </td>
+                                            <td><?php echo date("d-m-Y", strtotime($s['start_date'])) ?></td>
+                                            <td><?php echo date("d-m-Y", strtotime($s['end_date'])) ?></td>
+                                            <td>
+                                                <?php
+                                                $today = date("Y-m-d");
+                                                if ($s['end_date'] >= $today)
+                                                    echo '<span class="badge text-bg-success">Active</span>';
+                                                else
+                                                    echo  '<span class="badge text-bg-danger">Expired</span>';
+                                                ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
