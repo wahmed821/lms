@@ -9,7 +9,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<?php echo BASE_URL ?>dashboard.php">
+                    <a class="nav-link active" aria-current="page" href="<?php echo BASE_URL ?>dashboard">
                         <i class="fas fa-tachometer-alt-fast me-2"></i> Dashboard</a>
                 </li>
                 <li class="my-0">
@@ -33,7 +33,7 @@
                         <div>
                             <ul class="navbar-nav ps-3">
                                 <li>
-                                    <a href="<?php echo BASE_URL ?>books/add.php" class="nav-link"><i class="fa-solid fa-plus me-2"></i> Add New</a>
+                                    <a href="<?php echo BASE_URL ?>books/add" class="nav-link"><i class="fa-solid fa-plus me-2"></i> Add New</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo BASE_URL ?>books/" class="nav-link"><i class="fa-solid fa-list me-2"></i> Manage All</a>
